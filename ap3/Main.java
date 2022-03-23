@@ -7,6 +7,7 @@ import java.util.*;
 import javax.swing.*;
 import javax.swing.filechooser.*;
 import javax.swing.table.*;
+import com.formdev.flatlaf.FlatDarkLaf;
 
 public class Main extends javax.swing.JFrame {
     public static final String formatarData = "dd/MM/yyyy";
@@ -22,12 +23,12 @@ public class Main extends javax.swing.JFrame {
             delo.addRow(new Object[]{ListaCarro.get(i).getCod(),ListaCarro.get(i).getModelo(),ListaCarro.get(i).getMarca(),ListaCarro.get(i).getAno(),ListaCarro.get(i).getDataAdicionado()});
         }
         tabela_carro.setModel(delo);
-        tabela_carro.getColumnModel().getColumn(0).setMinWidth(33);
-        tabela_carro.getColumnModel().getColumn(0).setMaxWidth(33);
-        tabela_carro.getColumnModel().getColumn(3).setMinWidth(32);
-        tabela_carro.getColumnModel().getColumn(3).setMaxWidth(32);
-        tabela_carro.getColumnModel().getColumn(4).setMinWidth(65);
-        tabela_carro.getColumnModel().getColumn(4).setMaxWidth(65);
+        tabela_carro.getColumnModel().getColumn(0).setMinWidth(36);
+        tabela_carro.getColumnModel().getColumn(0).setMaxWidth(36);
+        tabela_carro.getColumnModel().getColumn(3).setMinWidth(42);
+        tabela_carro.getColumnModel().getColumn(3).setMaxWidth(42);
+        tabela_carro.getColumnModel().getColumn(4).setMinWidth(85);
+        tabela_carro.getColumnModel().getColumn(4).setMaxWidth(85);
     }
     public void CarregarTabelaCliente(){
         DefaultTableModel delo = new DefaultTableModel(new Object[]{"CPF","Nome","E-mail","Telefone","Data"}, 0);
@@ -35,12 +36,12 @@ public class Main extends javax.swing.JFrame {
             delo.addRow(new Object[]{ListaCliente.get(i).getCpf(),ListaCliente.get(i).getNome(),ListaCliente.get(i).getEmail(),ListaCliente.get(i).getTelefone(),ListaCliente.get(i).getDataAdicionado()});
         }
         tabela_cliente.setModel(delo);
-        tabela_cliente.getColumnModel().getColumn(0).setMinWidth(84);
-        tabela_cliente.getColumnModel().getColumn(0).setMaxWidth(84);
-        tabela_cliente.getColumnModel().getColumn(3).setMinWidth(85);
-        tabela_cliente.getColumnModel().getColumn(3).setMaxWidth(85);
-        tabela_cliente.getColumnModel().getColumn(4).setMinWidth(65);
-        tabela_cliente.getColumnModel().getColumn(4).setMaxWidth(65);
+        tabela_cliente.getColumnModel().getColumn(0).setMinWidth(117);
+        tabela_cliente.getColumnModel().getColumn(0).setMaxWidth(117);
+        tabela_cliente.getColumnModel().getColumn(3).setMinWidth(121);
+        tabela_cliente.getColumnModel().getColumn(3).setMaxWidth(121);
+        tabela_cliente.getColumnModel().getColumn(4).setMinWidth(85);
+        tabela_cliente.getColumnModel().getColumn(4).setMaxWidth(85);
     }
     public void CarregarTabelaVenda(){
         DefaultTableModel delo = new DefaultTableModel(new Object[]{"ID","Cliente","Carro","Preço","Data"}, 0);
@@ -50,10 +51,10 @@ public class Main extends javax.swing.JFrame {
         tabela_venda.setModel(delo);
         tabela_venda.getColumnModel().getColumn(0).setMinWidth(30);
         tabela_venda.getColumnModel().getColumn(0).setMaxWidth(30);
-        tabela_venda.getColumnModel().getColumn(3).setMinWidth(50);
-        tabela_venda.getColumnModel().getColumn(3).setMaxWidth(82);
-        tabela_venda.getColumnModel().getColumn(4).setMinWidth(65);
-        tabela_venda.getColumnModel().getColumn(4).setMaxWidth(65);
+        tabela_venda.getColumnModel().getColumn(3).setMinWidth(80);
+        tabela_venda.getColumnModel().getColumn(3).setMaxWidth(95);
+        tabela_venda.getColumnModel().getColumn(4).setMinWidth(85);
+        tabela_venda.getColumnModel().getColumn(4).setMaxWidth(85);
     }
     
     public final void carro_Button_Menu(boolean N, boolean E, boolean M){
@@ -101,9 +102,9 @@ public class Main extends javax.swing.JFrame {
     public Main() {
         initComponents();
         setLocationRelativeTo(null);
-        ListaCarro = new ArrayList();
-        ListaCliente = new ArrayList();
-        ListaVenda = new ArrayList();
+        ListaCarro = new ArrayList<Carro>();
+        ListaCliente = new ArrayList<Cliente>();
+        ListaVenda = new ArrayList<Venda>();
         noCasoCarro = "Inicio";
         noCasoCliente = "Inicio";
         controlar_carro_Menu();
@@ -204,7 +205,7 @@ public class Main extends javax.swing.JFrame {
         about_Menu = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("AP3");
+        setTitle("Concessionária AP3");
         addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 formMouseClicked(evt);
@@ -353,7 +354,7 @@ public class Main extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 438, Short.MAX_VALUE)
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 638, Short.MAX_VALUE)
                     .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(adicionar_carro_Button)
@@ -431,8 +432,8 @@ public class Main extends javax.swing.JFrame {
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(nome_Field, javax.swing.GroupLayout.DEFAULT_SIZE, 280, Short.MAX_VALUE)
                     .addComponent(email_Field)
-                    .addComponent(telefone_Field, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cpf_Field, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(telefone_Field, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cpf_Field, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -705,7 +706,7 @@ public class Main extends javax.swing.JFrame {
 
         file_Menu.setText("Arquivo");
 
-        open_Menu.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_O, java.awt.event.InputEvent.CTRL_MASK));
+        open_Menu.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_O, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         open_Menu.setText("Abrir");
         open_Menu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -714,7 +715,7 @@ public class Main extends javax.swing.JFrame {
         });
         file_Menu.add(open_Menu);
 
-        save_Menu.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.CTRL_MASK));
+        save_Menu.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         save_Menu.setText("Salvar");
         save_Menu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -723,7 +724,7 @@ public class Main extends javax.swing.JFrame {
         });
         file_Menu.add(save_Menu);
 
-        exit_Menu.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_W, java.awt.event.InputEvent.CTRL_MASK));
+        exit_Menu.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_W, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         exit_Menu.setText("Sair");
         exit_Menu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -767,12 +768,12 @@ public class Main extends javax.swing.JFrame {
             int abriu = abrir.showOpenDialog(this);
             List<String> linhas;
             if (abriu == JFileChooser.APPROVE_OPTION) {
-                File localNamrArq = abrir.getSelectedFile();
-                String localTeste = ""+localNamrArq;
-                linhas = Files.readAllLines(Paths.get(localTeste));
+                File localNameArq = abrir.getSelectedFile();
+                String localArq = ""+localNameArq;
+                linhas = Files.readAllLines(Paths.get(localArq));
                 for (String linha : linhas) {
-                    if (linha.startsWith(",")) {
-                        String[] dados = linha.split(",");
+                    if (linha.startsWith(":")) {
+                        String[] dados = linha.split(":");
                         Cliente novoCliente = new Cliente(dados[1], dados[2], dados[3], dados[4], dados[5]);
                         ListaCliente.add(novoCliente);
                     }
@@ -787,11 +788,13 @@ public class Main extends javax.swing.JFrame {
                         ListaVenda.add(novaVenda);
                     }
                 }
+                CarregarTabelaCarro();
+                CarregarTabelaCliente();
+                CarregarTabelaVenda();
+                JOptionPane.showMessageDialog(null, "Dados carregados com sucesso.", "Aviso", JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                throw new IOException();
             }
-            CarregarTabelaCarro();
-            CarregarTabelaCliente();
-            CarregarTabelaVenda();
-            JOptionPane.showMessageDialog(null, "Dados carregados com sucesso.", "Aviso", JOptionPane.INFORMATION_MESSAGE);
         } catch (IOException | NullPointerException | ArrayIndexOutOfBoundsException | NumberFormatException e) {
             JOptionPane.showMessageDialog(null, "Algo deu errado.\nVerifique os dados e tente novamente.", "ERRO:", JOptionPane.ERROR_MESSAGE);
         }
@@ -806,7 +809,7 @@ public class Main extends javax.swing.JFrame {
             if(escolha == JFileChooser.APPROVE_OPTION){
                 try (FileWriter save = new FileWriter(salvar.getSelectedFile()+".ap3")) {
                     for (int i = 0; i < ListaCliente.size(); i++){
-                        save.write("," +ListaCliente.get(i).getCpf()+ "," +ListaCliente.get(i).getNome()+ "," +ListaCliente.get(i).getEmail()+ "," +ListaCliente.get(i).getTelefone()+ "," +ListaCliente.get(i).getDataAdicionado()+ "\n");
+                        save.write(":" +ListaCliente.get(i).getCpf()+ ":" +ListaCliente.get(i).getNome()+ ":" +ListaCliente.get(i).getEmail()+ ":" +ListaCliente.get(i).getTelefone()+ ":" +ListaCliente.get(i).getDataAdicionado()+ "\n");
                     }
                     for (int i = 0; i < ListaCarro.size(); i++){
                         save.write("#" +ListaCarro.get(i).getCod()+ "#" +ListaCarro.get(i).getModelo()+ "#" +ListaCarro.get(i).getMarca()+ "#" +ListaCarro.get(i).getAno()+ "#" +ListaCarro.get(i).getDataAdicionado()+ "\n");
@@ -887,6 +890,11 @@ public class Main extends javax.swing.JFrame {
         controlar_cliente_Menu();
     }//GEN-LAST:event_editar_cliente_ButtonActionPerformed
     private void excluir_cliente_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_excluir_cliente_ButtonActionPerformed
+        int in = tabela_cliente.getSelectedRow();
+        if (in >= 0 && in < ListaCliente.size()) {
+            ListaCliente.remove(in);
+        }
+        CarregarTabelaCliente();
         noCasoCliente = "Inicio";
         controlar_cliente_Menu();
         cliente_text_Field("");
@@ -927,7 +935,7 @@ public class Main extends javax.swing.JFrame {
         carro_ComboBox.removeAllItems();
         cliente_ComboBox.removeAllItems();
         for (int i = 0; i < ListaCarro.size(); i++) {
-            String modeloBox = ListaCarro.get(i).getModelo();
+            String modeloBox = ListaCarro.get(i).getMarca() + " " + ListaCarro.get(i).getModelo() + " " + ListaCarro.get(i).getAno();
             carro_ComboBox.addItem(modeloBox);
         }
         for (int i = 0; i < ListaCliente.size(); i++) {
@@ -950,6 +958,7 @@ public class Main extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, nome+ " foi encontrado no ID " +local);
             }
         }
+        CarregarTabelaVenda();
     }//GEN-LAST:event_buscar_ButtonActionPerformed
     private void ok_venda_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ok_venda_ButtonActionPerformed
         id++;
@@ -964,14 +973,19 @@ public class Main extends javax.swing.JFrame {
                 ListaVenda.add(novaVenda);
                 CarregarTabelaVenda();
                 venda_Button_Menu(true, false);
+                carro_ComboBox.removeAllItems();
+                cliente_ComboBox.removeAllItems();
                 preco_Field.setText("");
             }
         } catch (NullPointerException e) {
             JOptionPane.showMessageDialog(null, "Você deixou de preencher algum campo.", "Ops, ocorreu um erro!", JOptionPane.ERROR_MESSAGE);
         }
+
     }//GEN-LAST:event_ok_venda_ButtonActionPerformed
     private void cancelar_venda_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelar_venda_ButtonActionPerformed
         venda_Button_Menu(true, false);
+        carro_ComboBox.removeAllItems();
+        cliente_ComboBox.removeAllItems();
         preco_Field.setText("");
     }//GEN-LAST:event_cancelar_venda_ButtonActionPerformed
     private void formMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseClicked
@@ -1005,19 +1019,8 @@ public class Main extends javax.swing.JFrame {
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
         try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Windows".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Main.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Main.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Main.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            javax.swing.UIManager.setLookAndFeel(new FlatDarkLaf());
+        }  catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(Main.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
