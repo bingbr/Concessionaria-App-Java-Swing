@@ -1,6 +1,6 @@
 {
     "java.project.referencedLibraries": [
         "lib/**/*.jar",
-        "ap3/lib/flatlaf-2.1.jar"
+        "ap3/lib/flatlaf.jar"
     ]
 }

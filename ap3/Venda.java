@@ -4,12 +4,12 @@ public class Venda {
     private int id;
     private String nomeCliente;
     private String modeloCarro;
-    private String preco;
+    private Float preco;
     private String dataAdicionado;
     
     public Venda(){
     }
-    public Venda(int id, String nomeCliente, String modeloCarro, String preco, String dataAdicionado){
+    public Venda(int id, String nomeCliente, String modeloCarro, Float preco, String dataAdicionado){
         this.id = id;
         this.nomeCliente = nomeCliente;
         this.modeloCarro = modeloCarro;
@@ -34,10 +34,10 @@ public class Venda {
     public void setModeloCarro(String modeloCarro) {
         this.modeloCarro = modeloCarro;
     }
-    public String getPreco() {
+    public Float getPreco() {
         return preco;
     }
-    public void setPreco(String preco) {
+    public void setPreco(Float preco) {
         this.preco = preco;
     }
     public String getDataAdicionado() {

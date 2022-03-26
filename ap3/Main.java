@@ -17,6 +17,7 @@ public class Main extends javax.swing.JFrame {
     List<Carro> ListaCarro;
     List<Cliente> ListaCliente;
     List<Venda> ListaVenda;
+    List<Venda> ListaPesquisa;
     public void CarregarTabelaCarro(){
         DefaultTableModel delo = new DefaultTableModel(new Object[]{"Cod.","Modelo","Marca","Ano","Data"}, 0);
         for (int i = 0; i < ListaCarro.size(); i++) {
@@ -47,6 +48,19 @@ public class Main extends javax.swing.JFrame {
         DefaultTableModel delo = new DefaultTableModel(new Object[]{"ID","Cliente","Carro","Preço","Data"}, 0);
         for (int i = 0; i < ListaVenda.size(); i++) {
             delo.addRow(new Object[]{ListaVenda.get(i).getId(),ListaVenda.get(i).getModeloCarro(),ListaVenda.get(i).getNomeCliente(),ListaVenda.get(i).getPreco(),ListaVenda.get(i).getDataAdicionado()});
+        }
+        tabela_venda.setModel(delo);
+        tabela_venda.getColumnModel().getColumn(0).setMinWidth(30);
+        tabela_venda.getColumnModel().getColumn(0).setMaxWidth(30);
+        tabela_venda.getColumnModel().getColumn(3).setMinWidth(80);
+        tabela_venda.getColumnModel().getColumn(3).setMaxWidth(95);
+        tabela_venda.getColumnModel().getColumn(4).setMinWidth(85);
+        tabela_venda.getColumnModel().getColumn(4).setMaxWidth(85);
+    }
+    public void CarregarTabelaPesquisa(){
+        DefaultTableModel delo = new DefaultTableModel(new Object[]{"ID","Cliente","Carro","Preço","Data"}, 0);
+        for (int i = 0; i < ListaPesquisa.size(); i++) {
+            delo.addRow(new Object[]{ListaPesquisa.get(i).getId(),ListaPesquisa.get(i).getModeloCarro(),ListaPesquisa.get(i).getNomeCliente(),ListaPesquisa.get(i).getPreco(),ListaPesquisa.get(i).getDataAdicionado()});
         }
         tabela_venda.setModel(delo);
         tabela_venda.getColumnModel().getColumn(0).setMinWidth(30);
@@ -105,6 +119,7 @@ public class Main extends javax.swing.JFrame {
         ListaCarro = new ArrayList<Carro>();
         ListaCliente = new ArrayList<Cliente>();
         ListaVenda = new ArrayList<Venda>();
+        ListaPesquisa = new ArrayList<Venda>();
         noCasoCarro = "Inicio";
         noCasoCliente = "Inicio";
         controlar_carro_Menu();
@@ -636,7 +651,7 @@ public class Main extends javax.swing.JFrame {
             }
         });
 
-        buscar_Button.setText("Buscar Venda");
+        buscar_Button.setText("Buscar");
         buscar_Button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buscar_ButtonActionPerformed(evt);
@@ -784,7 +799,7 @@ public class Main extends javax.swing.JFrame {
                     }
                     if (linha.startsWith(";")) {
                         String[] dados = linha.split(";");
-                        Venda novaVenda = new Venda(Integer.parseInt(dados[1]), dados[2], dados[3], dados[4], dados[5]);
+                        Venda novaVenda = new Venda(Integer.parseInt(dados[1]), dados[2], dados[3], Float.parseFloat(dados[4]), dados[5]);
                         ListaVenda.add(novaVenda);
                     }
                 }
@@ -946,19 +961,38 @@ public class Main extends javax.swing.JFrame {
         preco_Field.setText("");
     }//GEN-LAST:event_vender_ButtonActionPerformed
     private void buscar_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscar_ButtonActionPerformed
-        String entrada = buscar_Field.getText();
-        for (int i = 0; i < ListaVenda.size(); i++) {
-            String modelo = ListaVenda.get(i).getModeloCarro();
-            String nome = ListaVenda.get(i).getNomeCliente();
-            int local = ListaVenda.get(i).getId();
-            if (entrada.contains(modelo)) {
-                JOptionPane.showMessageDialog(this, modelo+ " foi encontrado no ID " +local);
+        try {
+            String entrada = buscar_Field.getText(); int filtar = 0;
+            ListaPesquisa.clear();
+            for (Venda salva : ListaVenda) {
+                String modelo = salva.getModeloCarro();
+                String nome = salva.getNomeCliente();
+                int localId = salva.getId(); filtar = salva.getId();
+                if (entrada.toLowerCase().contains(nome.toLowerCase()) || entrada.toLowerCase().contains(modelo.toLowerCase())) {
+                    Venda pesquisa = new Venda(localId, nome, modelo, salva.getPreco(), salva.getDataAdicionado());
+
+                    ListaPesquisa.add(pesquisa);
+                }
             }
-            if (entrada.contains(nome)) {
-                JOptionPane.showMessageDialog(this, nome+ " foi encontrado no ID " +local);
+            if (ListaPesquisa.size() > 0) {
+                tabela_venda.removeAll();
+                CarregarTabelaPesquisa();
+            } else {
+                if (entrada.equals("")) {
+                    CarregarTabelaVenda();
+                    throw new NullPointerException();
+                }
+                if (filtar >= 0) {
+                    CarregarTabelaVenda();
+                    throw new NoSuchElementException();
+                }
             }
+            buscar_Field.setText("");
+        } catch (NullPointerException e) {
+            JOptionPane.showMessageDialog(null,"Você precisa digitar o que deseja pesquisar.", "Ops, ocorreu um erro!", JOptionPane.ERROR_MESSAGE);
+        } catch (NoSuchElementException ex) {
+            JOptionPane.showMessageDialog(null,buscar_Field.getText()+ " não foi encontrado.", "Ops, ocorreu um erro!", JOptionPane.ERROR_MESSAGE);
         }
-        CarregarTabelaVenda();
     }//GEN-LAST:event_buscar_ButtonActionPerformed
     private void ok_venda_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ok_venda_ButtonActionPerformed
         id++;
@@ -966,7 +1000,7 @@ public class Main extends javax.swing.JFrame {
             Date data = new Date();
             DateFormat d = new SimpleDateFormat(formatarData);
             String dataFormatado = d.format(data);
-            Venda novaVenda = new Venda(id, carro_ComboBox.getSelectedItem().toString(), cliente_ComboBox.getSelectedItem().toString(), preco_Field.getText(), dataFormatado);
+            Venda novaVenda = new Venda(id, carro_ComboBox.getSelectedItem().toString(), cliente_ComboBox.getSelectedItem().toString(), Float.parseFloat(preco_Field.getText().replace(",", ".")), dataFormatado);
             if (preco_Field.getText().equals("")) {
                 throw new NullPointerException();
             } else {
@@ -979,6 +1013,8 @@ public class Main extends javax.swing.JFrame {
             }
         } catch (NullPointerException e) {
             JOptionPane.showMessageDialog(null, "Você deixou de preencher algum campo.", "Ops, ocorreu um erro!", JOptionPane.ERROR_MESSAGE);
+        } catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(null, "Verifique o preço inserido.", "Ops, ocorreu um erro!", JOptionPane.ERROR_MESSAGE);
         }
 
     }//GEN-LAST:event_ok_venda_ButtonActionPerformed
