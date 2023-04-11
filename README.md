@@ -2,32 +2,42 @@
 
 Programa feito com Java Swing para a avaliação de Estratégias de Programação Orientada a Objeto no primeiro semestre de 2020.
 
-O programa permite adicionar, visualizar, editar e excluir as listas de clientes e carros, permite realizar vendas e visualizar o histórico de venda. Também possui opção para salvar e carregar informações sobre carros, clientes e vendas.
+Feito para o gerenciamento de clientes e carros, permitindo adicionar, visualizar, editar e excluir os dados de cada um. Além disso, o programa possibilita realizar vendas e acompanhar o histórico de cada transação. O programa também conta com a opção de salvar e carregar as informações sobre carros, clientes e vendas em arquivos.
 
-### Atalhos disponíveis:
-- `Ctrl + O` : Abrir arquivo.
+### Atalhos:
+- `Ctrl + O` : Abrir arquivo salvo.
 - `Ctrl + S` : Salvar informações em arquivo.
-- `Ctrl + W` : Encerrar programa.
+- `Ctrl + W` : Encerrar o programa.
 
-**Concessionária AP3** funciona em Windows, Linux e Mac.
+Funciona em [Windows](#windows), [Linux](#linux-gnome) e [Mac](#mac-os).
 
-## Utilizado:
-* **IDE**: [Apache NetBeans 11.3](https://netbeans.apache.org/download/nb113/nb113.html "IDE para desenvolvimento de aplicações Java")
-* **Java**: [JDK 11](https://www.oracle.com/java/technologies/javase-jdk11-downloads.html "Java Development Kit 11 - Ambiente de desenvolvimento para construção de aplicativos e componentes usando o Java")
-* **Editor**: [Visual Studio Code 1.45.1 / 1.65.2](https://code.visualstudio.com/download "Editor de código simplificado com suporte para operações de desenvolvimento como depuração, execução de tarefas e controle de versão")
+## Feito com
+* **IDE**: [Apache NetBeans 17](https://netbeans.apache.org/download/nb17/ "IDE para desenvolvimento de aplicações Java")
+* **Editor**: [Visual Studio Code 1.77.1](https://code.visualstudio.com/download "Editor de código simplificado com suporte para operações de desenvolvimento como depuração, execução de tarefas e controle de versão")
+* **Java**: [JDK 17 ou superior](https://www.oracle.com/java/technologies/downloads/#java17 "Java Development Kit 17 - Ambiente de desenvolvimento para construção de aplicativos e componentes usando o Java")
+* **Gerenciador de Pacotes**: [Maven](https://maven.apache.org/download.cgi "Ferramenta de gerenciamento de projetos de software")
 * **Visual**: [FlatLaf](https://github.com/JFormDesigner/FlatLaf "Aparência multiplataforma para aplicações Java Swing desktop")
+* **Dados**: [Json](https://mvnrepository.com/artifact/org.json/json "JavaScript Object Notation")
 
 ## Como testar?
-_Obs.: Precisa de [JDK 11](https://oracle.com/java/technologies/downloads/ "Java Development Kit 11") ou superior instalado e [Extension Pack for Java](https://marketplace.visualstudio.com/items?itemName=vscjava.vscode-java-pack "Extensão do VS Code para desenvolvimento com Java")._
-1. Abra o repositório com o VS Code
-2. Utilize o atalho `Crtl + F5` para iniciar.
+_Obs¹.: Precisa de [JDK 17](https://oracle.com/java/technologies/downloads/ "Java Development Kit 11") ou superior instalado._<br>
+_Obs².: Será necessário [permitir a execução de software sem assinatura no MacOS](https://support.apple.com/guide/mac-help/open-a-mac-app-from-an-unidentified-developer-mh40616/mac)._
+1. Baixe a `release` no GitHub
+2. Execute (Double-click ou digite no terminal `java -jar Concessionaria-AP3-1.0.jar`)
 
-## Demonstração de funcionamento:
+## Como compilar?
+1. Instale [JDK 17 ou superior](https://www.oracle.com/java/technologies/downloads/#java17 "Java Development Kit 17 - Ambiente de desenvolvimento para construção de aplicativos e componentes usando o Java")
+2. Instale [Maven](https://maven.apache.org/download.cgi "Ferramenta de gerenciamento de projetos de software")
+3. Execute o comando `mvn clean package` na pasta
+4. Maven criará uma pasta `/target` com o o `.jar`
+5. Inicie o programa com o `java -jar ./target/Concessionaria-AP3-1.0.jar` ou dê double-click
+
+## Demonstração:
 ![Gif de demonstração no UNIX-Like](/img/app-demo.gif)
 
-### No Windows
-
-- Tela inicial
-![Tela inicial no Windows](/img/Win-print-1.png)
-- Barra de menu incorporada
-![Barra de ferramentas do app no Windows](/img/Win-print-2.png)
+## Mac OS
+![Tela vendas no macOS](/img/osx-print.webp)
+## Windows
+![Tela vendas no Windows](/img/win-print.webp)
+## Linux Gnome
+![Tela vendas no Linux Gnome](/img/gnome-print.webp)

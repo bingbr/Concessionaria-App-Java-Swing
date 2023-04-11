@@ -1,6 +1,3 @@
 {
-    "java.project.referencedLibraries": [
-        "lib/**/*.jar",
-        "ap3/lib/flatlaf.jar"
-    ]
+    "java.configuration.updateBuildConfiguration": "automatic"
 }
