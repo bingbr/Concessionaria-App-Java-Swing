@@ -2,6 +2,7 @@ package edu.uni.ap3;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
+import javax.management.InvalidAttributeValueException;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -150,34 +151,45 @@ public class Buttons extends Component {
 
     protected void carro_ok_ButtonActionPerformed(Main main) {
         try {
-            Carro carro;
             int cod = Integer.parseInt(main.carro_cod_Field.getText());
             String modelo = main.carro_modelo_Field.getText();
             String marca = main.carro_marca_Field.getText();
             int ano = Integer.parseInt(main.carro_ano_Field.getText());
 
-            if (main.noCasoCarro.equals("Novo")) {
-                boolean codExists = main.ListaCarro.stream().anyMatch(c -> c.getCod() == cod);
-                if (codExists) {
-                    JOptionPane.showMessageDialog(null, "O código do carro já existe.", "Ops, ocorreu um erro!", JOptionPane.ERROR_MESSAGE);
-                    return;
-                }
-                carro = new Carro(cod, modelo, marca, ano, new Date());
-                main.ListaCarro.add(carro);
+            if (modelo.isEmpty() || marca.isEmpty()) {
+                throw new Exception();
             } else {
-                int in = main.carro_Tabela.getSelectedRow();
-                carro = main.ListaCarro.get(in);
-                carro.setCod(cod);
-                carro.setModelo(modelo);
-                carro.setMarca(marca);
-                carro.setAno(ano);
+                if (ano > 10000 || ano < 1865) {
+                    throw new InvalidAttributeValueException("O ano do carro é inválido.");
+                } else {
+                    if (main.noCasoCarro.equals("Novo")) {
+                        boolean codExists = main.ListaCarro.stream().anyMatch(c -> c.getCod() == cod);
+                        if (codExists) {
+                            throw new InvalidAttributeValueException("O código do carro já existe.");
+                        }
+                        Carro carro = new Carro(cod, modelo, marca, ano, new Date());
+                        main.ListaCarro.add(carro);
+                    } else {
+                        int in = main.carro_Tabela.getSelectedRow();
+                        Carro carro = main.ListaCarro.get(in);
+                        carro.setCod(cod);
+                        carro.setModelo(modelo);
+                        carro.setMarca(marca);
+                        carro.setAno(ano);
+                    }
+                }
             }
             main.CarregarTabelaCarro();
             main.noCasoCarro = "Inicio";
             main.carro_controlar_Menu();
             main.carro_text_Field("");
-        } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(null, "Você deixou de preencher algum campo.", "Ops, ocorreu um erro!", JOptionPane.ERROR_MESSAGE);
+        } catch (Exception e) {
+            if (e.getClass().getSimpleName().equalsIgnoreCase("NumberFormatException")) {
+                String dado = e.getMessage().replace("For input string: \"", "").replace("\"", "");
+                JOptionPane.showMessageDialog(null, (dado.isEmpty()) ? "Você deixou de preencher algum campo." : String.format("'%s' é inválido.",dado), "Ops, ocorreu um erro!", JOptionPane.ERROR_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(null, e.getClass().getSimpleName().equalsIgnoreCase("InvalidAttributeValueException") ? e.getMessage() : "Você deixou de preencher algum campo.", "Ops, ocorreu um erro!", JOptionPane.ERROR_MESSAGE);
+            }
         }
     }
 
@@ -228,13 +240,13 @@ public class Buttons extends Component {
             String nome = main.cliente_nome_Field.getText();
             String email = main.cliente_email_Field.getText();
             String telefone = main.cliente_telefone_Field.getText();
-            if (main.noCasoCliente.equals("Novo")) {
-                if (cpf.contains("   .   .   -  ") || nome.isEmpty() || email.isEmpty() || telefone.contains("(  )     -    ")) {
-                    throw new Exception("Você deixou de preencher um campo.");
+            if (cpf.contains("   .   .   -  ") || nome.isEmpty() || email.isEmpty() || telefone.contains("(  )     -    ")) {
+                throw new Exception("Você deixou de preencher um campo.");
+            } else {
+                if (telefone.startsWith("(0")) {
+                    throw new Exception("DDD do telefone não pode começar com 0.");
                 } else {
-                    if (telefone.startsWith("(0")) {
-                        throw new Exception("DDD do telefone não pode começar com 0.");
-                    } else {
+                    if (main.noCasoCliente.equals("Novo")) {
                         boolean cpfExists = main.ListaCliente.stream().anyMatch(cliente -> cliente.getCpfFormatado().equals(cpf));
                         if (cpfExists) {
                             throw new Exception("CPF já existe na lista de clientes.");
@@ -242,14 +254,15 @@ public class Buttons extends Component {
                             Cliente novoCliente = new Cliente(Data.stringPraLong(cpf), nome, email, Data.stringPraLong(telefone), new Date());
                             main.ListaCliente.add(novoCliente);
                         }
+                    } else {
+                        int in = main.cliente_Tabela.getSelectedRow();
+                        Cliente cliente = main.ListaCliente.get(in);
+                        cliente.setCpf(Data.stringPraLong(cpf));
+                        cliente.setNome(nome);
+                        cliente.setEmail(email);
+                        cliente.setTelefone(Data.stringPraLong(telefone));
                     }
                 }
-            } else {
-                int in = main.cliente_Tabela.getSelectedRow();
-                main.ListaCliente.get(in).setCpf(Data.stringPraLong(cpf));
-                main.ListaCliente.get(in).setNome(nome);
-                main.ListaCliente.get(in).setEmail(email);
-                main.ListaCliente.get(in).setTelefone(Data.stringPraLong(telefone));
             }
             main.CarregarTabelaCliente();
             main.noCasoCliente = "Inicio";

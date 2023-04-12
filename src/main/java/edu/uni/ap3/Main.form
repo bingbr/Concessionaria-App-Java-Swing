@@ -204,8 +204,8 @@
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="carro_ano_Field" min="-2" pref="75" max="-2" attributes="0"/>
-                              <Component id="carro_cod_Field" alignment="0" min="-2" pref="75" max="-2" attributes="0"/>
+                              <Component id="carro_ano_Field" min="-2" pref="55" max="-2" attributes="0"/>
+                              <Component id="carro_cod_Field" alignment="0" min="-2" pref="55" max="-2" attributes="0"/>
                               <Component id="carro_modelo_Field" alignment="0" pref="280" max="32767" attributes="0"/>
                               <Component id="carro_marca_Field" max="32767" attributes="0"/>
                           </Group>
@@ -336,8 +336,8 @@
                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                       <Table columnCount="5" rowCount="0">
                         <Column editable="false" title="Cod." type="java.lang.Integer"/>
-                        <Column editable="true" title="Modelo" type="java.lang.String"/>
-                        <Column editable="true" title="Marca" type="java.lang.String"/>
+                        <Column editable="false" title="Modelo" type="java.lang.String"/>
+                        <Column editable="false" title="Marca" type="java.lang.String"/>
                         <Column editable="false" title="Ano" type="java.lang.Integer"/>
                         <Column editable="false" title="Data" type="java.lang.String"/>
                       </Table>
@@ -432,8 +432,8 @@
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
                               <Component id="cliente_nome_Field" pref="280" max="32767" attributes="0"/>
                               <Component id="cliente_email_Field" max="32767" attributes="0"/>
-                              <Component id="cliente_cpf_Field" alignment="0" min="-2" pref="132" max="-2" attributes="0"/>
-                              <Component id="cliente_telefone_Field" alignment="0" min="-2" pref="132" max="-2" attributes="0"/>
+                              <Component id="cliente_cpf_Field" alignment="0" min="-2" pref="127" max="-2" attributes="0"/>
+                              <Component id="cliente_telefone_Field" alignment="0" min="-2" pref="127" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="32767" attributes="0"/>
                       </Group>

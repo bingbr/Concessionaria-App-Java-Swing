@@ -39,7 +39,7 @@ public class Main extends javax.swing.JFrame {
     }
 
     protected void CarregarTabelaVenda(List<Venda> Lista) {
-        int[] min = new int[]{30, 95, 85};
+        int[] min = new int[]{30, 105, 85};
         int[] max = new int[]{30, 150, 85};
         data.carregarTabela(Lista, venda_Tabela,
                 new Object[]{"ID","Cliente","Carro","Preço","Data"},
@@ -220,18 +220,10 @@ public class Main extends javax.swing.JFrame {
         carro_ano_Text.setText("Ano:");
 
         carro_ok_Button.setText("OK");
-        carro_ok_Button.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttons.carro_ok_ButtonActionPerformed(Main.this);
-            }
-        });
+        carro_ok_Button.addActionListener(evt -> buttons.carro_ok_ButtonActionPerformed(Main.this));
 
         carro_cancelar_Button.setText("Cancelar");
-        carro_cancelar_Button.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttons.carro_cancelar_ButtonActionPerformed(Main.this);
-            }
-        });
+        carro_cancelar_Button.addActionListener(evt -> buttons.carro_cancelar_ButtonActionPerformed(Main.this));
 
         javax.swing.GroupLayout subMenu_CarroLayout = new javax.swing.GroupLayout(subMenu_Carro);
         subMenu_Carro.setLayout(subMenu_CarroLayout);
@@ -246,8 +238,8 @@ public class Main extends javax.swing.JFrame {
                     .addComponent(carro_cod_Text))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(subMenu_CarroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(carro_ano_Field, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(carro_cod_Field, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(carro_ano_Field, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(carro_cod_Field, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(carro_modelo_Field, javax.swing.GroupLayout.DEFAULT_SIZE, 280, Short.MAX_VALUE)
                     .addComponent(carro_marca_Field))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -285,25 +277,13 @@ public class Main extends javax.swing.JFrame {
         );
 
         carro_adicionar_Button.setText("Adicionar Carro");
-        carro_adicionar_Button.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttons.carro_adicionar_ButtonActionPerformed(Main.this);
-            }
-        });
+        carro_adicionar_Button.addActionListener(evt -> buttons.carro_adicionar_ButtonActionPerformed(Main.this));
 
         carro_editar_Button.setText("Editar");
-        carro_editar_Button.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttons.carro_editar_ButtonActionPerformed(Main.this);
-            }
-        });
+        carro_editar_Button.addActionListener(evt -> buttons.carro_editar_ButtonActionPerformed(Main.this));
 
         carro_excluir_Button.setText("Excluir");
-        carro_excluir_Button.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttons.carro_excluir_ButtonActionPerformed(Main.this);
-            }
-        });
+        carro_excluir_Button.addActionListener(evt -> buttons.carro_excluir_ButtonActionPerformed(Main.this));
 
         carro_Tabela.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -313,11 +293,11 @@ public class Main extends javax.swing.JFrame {
                 "Cod.", "Modelo", "Marca", "Ano", "Data"
             }
         ) {
-            Class<?>[] types = new Class [] {
+            final Class<?>[] types = new Class [] {
                 java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class
             };
-            boolean[] canEdit = new boolean [] {
-                false, true, true, false, false
+            final boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
             };
 
             public Class<?> getColumnClass(int columnIndex) {
@@ -383,18 +363,10 @@ public class Main extends javax.swing.JFrame {
         cliente_telefone_Text.setText("Telefone:");
 
         cliente_ok_Button.setText("OK");
-        cliente_ok_Button.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttons.cliente_ok_ButtonActionPerformed(Main.this);
-            }
-        });
+        cliente_ok_Button.addActionListener(evt -> buttons.cliente_ok_ButtonActionPerformed(Main.this));
 
         cliente_cancelar_Button.setText("Cancelar");
-        cliente_cancelar_Button.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttons.cliente_cancelar_ButtonActionPerformed(Main.this);
-            }
-        });
+        cliente_cancelar_Button.addActionListener(evt -> buttons.cliente_cancelar_ButtonActionPerformed(Main.this));
 
         try {
             cliente_cpf_Field.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
@@ -423,8 +395,8 @@ public class Main extends javax.swing.JFrame {
                     .addComponent(cliente_cpf_Text))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(subMenu_ClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(cliente_cpf_Field, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cliente_telefone_Field, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cliente_cpf_Field, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cliente_telefone_Field, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cliente_nome_Field, javax.swing.GroupLayout.DEFAULT_SIZE, 280, Short.MAX_VALUE)
                     .addComponent(cliente_email_Field))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -462,25 +434,13 @@ public class Main extends javax.swing.JFrame {
         );
 
         cliente_adicionar_Button.setText("Adicionar Cliente");
-        cliente_adicionar_Button.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttons.cliente_adicionar_ButtonActionPerformed(Main.this);
-            }
-        });
+        cliente_adicionar_Button.addActionListener(evt -> buttons.cliente_adicionar_ButtonActionPerformed(Main.this));
 
         cliente_editar_Button.setText("Editar");
-        cliente_editar_Button.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttons.cliente_editar_ButtonActionPerformed(Main.this);
-            }
-        });
+        cliente_editar_Button.addActionListener(evt -> buttons.cliente_editar_ButtonActionPerformed(Main.this));
 
         cliente_excluir_Button.setText("Excluir");
-        cliente_excluir_Button.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttons.cliente_excluir_ButtonActionPerformed(Main.this);
-            }
-        });
+        cliente_excluir_Button.addActionListener(evt -> buttons.cliente_excluir_ButtonActionPerformed(Main.this));
 
         cliente_Tabela.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -490,10 +450,10 @@ public class Main extends javax.swing.JFrame {
                 "CPF", "Nome", "E-mail", "Telefone", "Data"
             }
         ) {
-            Class<?>[] types = new Class [] {
+            final Class<?>[] types = new Class [] {
                 java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
-            boolean[] canEdit = new boolean [] {
+            final boolean[] canEdit = new boolean [] {
                 false, false, false, false, false
             };
 
@@ -556,18 +516,10 @@ public class Main extends javax.swing.JFrame {
         venda_preco_Text.setText("Preço:");
 
         venda_ok_Button.setText("OK");
-        venda_ok_Button.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttons.venda_ok_ButtonActionPerformed(Main.this);
-            }
-        });
+        venda_ok_Button.addActionListener(evt -> buttons.venda_ok_ButtonActionPerformed(Main.this));
 
         venda_cancelar_Button.setText("Cancelar");
-        venda_cancelar_Button.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttons.venda_cancelar_ButtonActionPerformed(Main.this);
-            }
-        });
+        venda_cancelar_Button.addActionListener(evt -> buttons.venda_cancelar_ButtonActionPerformed(Main.this));
 
         javax.swing.GroupLayout subMenu_VendaLayout = new javax.swing.GroupLayout(subMenu_Venda);
         subMenu_Venda.setLayout(subMenu_VendaLayout);
@@ -615,18 +567,10 @@ public class Main extends javax.swing.JFrame {
         );
 
         venda_vender_Button.setText("Vender");
-        venda_vender_Button.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttons.venda_vender_ButtonActionPerformed(Main.this);
-            }
-        });
+        venda_vender_Button.addActionListener(evt -> buttons.venda_vender_ButtonActionPerformed(Main.this));
 
         venda_buscar_Button.setText("Buscar Venda");
-        venda_buscar_Button.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttons.venda_buscar_ButtonActionPerformed(Main.this);
-            }
-        });
+        venda_buscar_Button.addActionListener(evt -> buttons.venda_buscar_ButtonActionPerformed(Main.this));
 
         venda_Tabela.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -636,10 +580,10 @@ public class Main extends javax.swing.JFrame {
                 "ID", "Cliente", "Carro", "Preço", "Data"
             }
         ) {
-            Class<?>[] types = new Class [] {
+            final Class<?>[] types = new Class [] {
                 java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Double.class, java.lang.String.class
             };
-            boolean[] canEdit = new boolean [] {
+            final boolean[] canEdit = new boolean [] {
                 false, false, false, false, false
             };
 
@@ -696,29 +640,17 @@ public class Main extends javax.swing.JFrame {
 
         menu_Abrir.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_O, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         menu_Abrir.setText("Abrir");
-        menu_Abrir.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttons.menu_AbrirActionPerformed(Main.this);
-            }
-        });
+        menu_Abrir.addActionListener(evt -> buttons.menu_AbrirActionPerformed(Main.this));
         menu_Arquivo.add(menu_Abrir);
 
         menu_Salvar.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         menu_Salvar.setText("Salvar");
-        menu_Salvar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttons.menu_SalvarActionPerformed(Main.this);
-            }
-        });
+        menu_Salvar.addActionListener(evt -> buttons.menu_SalvarActionPerformed(Main.this));
         menu_Arquivo.add(menu_Salvar);
 
         menu_Sair.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_W, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         menu_Sair.setText("Sair");
-        menu_Sair.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttons.menu_SairActionPerformed();
-            }
-        });
+        menu_Sair.addActionListener(evt -> buttons.menu_SairActionPerformed());
         menu_Arquivo.add(menu_Sair);
 
         menu_Barra.add(menu_Arquivo);
@@ -756,7 +688,7 @@ public class Main extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
+    public static void main(String[] args) {
         /* Set the FlatLaf Dark look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /*
@@ -770,11 +702,7 @@ public class Main extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Main().setVisible(true);
-            }
-        });
+        java.awt.EventQueue.invokeLater(() -> new Main().setVisible(true));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
